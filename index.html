@@ -1,40 +1,33 @@
 <!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Tic Tac Toe - JavaScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class ="container">
+            <canvas id ="cvs" width="450" height= "450" ></canvas>
 
-<html>
+            <div class = "options">
+                <h1>Tic Tac Toe</h1>
+                <h2>Play Versus</h2>
+                <div class="computer">COMPUTER</div>
+                <div class = "friend">FRIEND</div>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+                <h2>Symbol</h2>
+                <div class="x">X</div>
+                <div class="o">O</div>
+                
+                <div class = "play">Play</div>
 
-</head>
-
-<body>
-
-    <table>
-        <tr>
-            <td class="cell" id="0"></td>
-            <td class="cell" id="1"></td>
-            <td class="cell" id="2"></td>
-        </tr>
-        <tr>
-            <td class="cell" id="3"></td>
-            <td class="cell" id="4"></td>
-            <td class="cell" id="5"></td>
-        </tr>
-        <tr>
-            <td class="cell" id="6"></td>
-            <td class="cell" id="7"></td>
-            <td class="cell" id="8"></td>
-        </tr>
-    </table>
-    <div class="endgame">
-        <div class="text"></div>
-    </div>    
-    <button type="button" class="btn btn-info" onClick="startGame()">Replay</button>
-    <script src="script.js"></script>
-</body>
-
+            </div>
+            <div class = "gameover hide"></div>
+        </div>
+        <script src ="game.js"></script>
+        <script src="options.js"></script>
+       
+    </body>
 </html>
