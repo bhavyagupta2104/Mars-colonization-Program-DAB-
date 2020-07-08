@@ -1,33 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script async defer src="script.js"></script>
-</head>
-<body>
-    <h1 align="center">Tic Tac Toe Game</h1>
-    <h2 align="center"> Next Turn: Player <span id="player">X</span></h2>
-    <div style="text-align: center;"><button id="restart" onclick="restartGame()">RESTART</button></div>
 
-    <table id="game" align="center">
+</head>
+
+<body>
+
+    <table>
         <tr>
-            <td onclick="boxClicked(1, 1)"></td>
-            <td onclick="boxClicked(1, 2)"></td>
-            <td onclick="boxClicked(1, 3)"></td>
+            <td class="cell" id="0"></td>
+            <td class="cell" id="1"></td>
+            <td class="cell" id="2"></td>
         </tr>
         <tr>
-            <td onclick="boxClicked(2, 1)"></td>
-            <td onclick="boxClicked(2, 2)"></td>
-            <td onclick="boxClicked(2, 3)"></td>
+            <td class="cell" id="3"></td>
+            <td class="cell" id="4"></td>
+            <td class="cell" id="5"></td>
         </tr>
         <tr>
-            <td onclick="boxClicked(3, 1)"></td>
-            <td onclick="boxClicked(3, 2)"></td>
-            <td onclick="boxClicked(3, 3)"></td>
+            <td class="cell" id="6"></td>
+            <td class="cell" id="7"></td>
+            <td class="cell" id="8"></td>
         </tr>
     </table>
+    <div class="endgame">
+        <div class="text"></div>
+    </div>    
+    <button type="button" class="btn btn-info" onClick="startGame()">Replay</button>
+    <script src="script.js"></script>
 </body>
+
 </html>
