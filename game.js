@@ -17,7 +17,7 @@ function init(player, OPPONENT){
 
     const oImage = new Image();
     oImage.src = "img/O.png";
-
+//winning combinations
     const COMBOS = [
         [0, 1, 2],
         [3, 4, 5],
@@ -83,10 +83,127 @@ function init(player, OPPONENT){
             return;
         }
 
-        currentPlayer = currentPlayer == player.man ? player.friend : player.man;
+        if( OPPONENT == "computer"){
+        
+            let id = minimax( gameData, player.computer ).id;
+
+            // store the player's move to gameData
+            gameData[id] = player.computer;
+            
+            // get i and j 
+            let space = getIJ(id);
+
+            
+            drawOnBoard(player.computer, space.i, space.j);
+
+     
+            if(isWinner(gameData, player.computer)){
+                showGameOver(player.computer);
+                GAME_OVER = true;
+                return;
+            }
+
+            
+            if(isTie(gameData)){
+                showGameOver("tie");
+                GAME_OVER = true;
+                return;
+            }
+        }else{
+            //  TURN TO THE OTHER PLAYER
+            currentPlayer = currentPlayer == player.man ? player.friend : player.man;
+        }
+
 
     });
 
+    function minimax(gameData, PLAYER){
+        // base case
+        if( isWinner(gameData, player.computer) ) return { evaluation : +10 };
+        if( isWinner(gameData, player.man)      ) return { evaluation : -10 };
+        if( isTie(gameData)                     ) return { evaluation : 0 };
+
+        // look for empty space
+        let EMPTY_SPACES = getEmptySpaces(gameData);
+
+        // save all moves and evaluations
+        let moves = [];
+
+       
+        for( let i = 0; i < EMPTY_SPACES.length; i++){
+            
+            let id = EMPTY_SPACES[i];
+
+           
+            let backup = gameData[id];
+
+            // make move
+            gameData[id] = PLAYER;
+
+            // save id and evaluation
+            let move = {};
+            move.id = id;
+            // move evaluation
+            if( PLAYER == player.computer){
+                move.evaluation = minimax(gameData, player.man).evaluation;
+            }else{
+                move.evaluation = minimax(gameData, player.computer).evaluation;
+            }
+
+           
+            gameData[id] = backup;
+
+            // add moves to array
+            moves.push(move);
+        }
+
+        let bestMove;
+//main algo starts
+        if(PLAYER == player.computer){
+            // maximizer
+            let bestEvaluation = -Infinity;
+            for(let i = 0; i < moves.length; i++){
+                if( moves[i].evaluation > bestEvaluation ){
+                    bestEvaluation = moves[i].evaluation;
+                    bestMove = moves[i];
+                }
+            }
+        }else{
+            // minimizer
+            let bestEvaluation = +Infinity;
+            for(let i = 0; i < moves.length; i++){
+                if( moves[i].evaluation < bestEvaluation ){
+                    bestEvaluation = moves[i].evaluation;
+                    bestMove = moves[i];
+                }
+            }
+        }
+
+        return bestMove;
+    }
+
+
+
+    // GET EMPTY SPACES
+
+    function getEmptySpaces(gameData){
+        let EMPTY = [];
+
+        for( let id = 0; id < gameData.length; id++){
+            if(!gameData[id]) EMPTY.push(id);
+        }
+
+        return EMPTY;
+    }
+//get id
+    function getIJ(id){
+        for(let i = 0; i < board.length; i++){
+            for(let j = 0; j < board[i].length; j++){
+                if(board[i][j] == id) return { i : i, j : j}
+            }
+        }
+    }
+//check winner
     function isWinner(gameData,player){
         for( i =0 ; i< COMBOS.length ; i++){
             let won =true;
@@ -103,7 +220,7 @@ function init(player, OPPONENT){
         }
         return false;
     }
-
+//check tie
     function isTie(gameData){
             let isBoardFill = true;
             for( let i=0; i <gameData.length ; i++){
@@ -115,6 +232,7 @@ function init(player, OPPONENT){
             }
 
             return false;
+ 
 
     }
 
