@@ -7,12 +7,15 @@
     src: local('Fascinate Inline'), local('FascinateInline-Regular'), url(font/jVyR7mzzB3zc-jp6QCAu60poNqIy5grIfA.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
+body {
+  background-image:url('img/board-vec.jpg');
+}
 
 .container{
     width: 450px;
     height: 450px;
     display: block;
-    margin: 25px auto;
+    margin: 100px auto;
     position: relative;
 }
 
@@ -31,7 +34,7 @@
     text-align: center;
     font-size: 65px;
     font-family: 'Fascinate Inline', cursive;
-    color: #f00;
+    color: black;
     margin: 30px 0 20px 0;
 }
 
@@ -127,8 +130,8 @@
 
 .gameover .play{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 1.5em;
-    width: 150px;
+    font-size: 1 em;
+    width: 200px;
     display: block;
     margin: 25px auto;
     border-radius: 5px;
